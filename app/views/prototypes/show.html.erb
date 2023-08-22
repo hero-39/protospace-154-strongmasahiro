@@ -30,7 +30,7 @@
       </div>
       <div class="prototype__comments">
         <% if user_signed_in? %>
-          <%= form_with model: [@prototype, @comment], local: true do |f|%>
+          <%= form_with(model: [@prototype, @comment], local: true) do |f| %>
             <div class="field">
               <%= f.label :content, "コメント" %><br />
               <%= f.text_field :content, id:"comment_content" %>
@@ -39,12 +39,13 @@
               <%= f.submit "送信する", class: :form__btn  %>
             </div>
           <% end %>
+        <% end %>
         <ul class="comments_lists">
           <li class="comments_list">
             <% @comments.each do |comment| %>
               <p>
-                <strong><%= link_to comment.user.name, "/users/#{comment.user_id}", class: :comment_user %></strong>
-                <%= comment.text %>
+                <%= link_to comment.user.name, "/users/#{comment.user_id}", class: :comment_user %>
+                <%= comment.content %>
               </p>
             <% end %>
           </li>
