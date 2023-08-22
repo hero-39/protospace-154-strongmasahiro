@@ -1,6 +1,7 @@
 default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -8,7 +9,7 @@ development:
   username: root
   password:
   host: localhost
-  database: protospace-154-strongmasahiro 
+  database: protospace_154_strongmasahiro_development
 
 test:
   <<: *default
@@ -16,7 +17,7 @@ test:
   username: root
   password:
   host: localhost
-  database: protospace-154-strongmasahiro 
+  database: protospace_154_strongmasahiro_test 
 
 production:
   <<: *default
