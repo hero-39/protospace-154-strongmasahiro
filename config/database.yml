@@ -17,7 +17,7 @@ test:
   username: root
   password:
   host: localhost
-  database: protospace_154_strongmasahiro_test
+  database: protospace_154_strongmasahiro_test 
 
 production:
   <<: *default
