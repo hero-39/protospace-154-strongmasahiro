@@ -9,7 +9,7 @@ development:
   username: root
   password:
   host: localhost
-  database: protospace_154_strongmasahiro_development 
+  database: protospace_154_strongmasahiro_development
 
 test:
   <<: *default
