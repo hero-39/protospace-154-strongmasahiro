@@ -32,7 +32,7 @@
         <% if user_signed_in? %>
           <%= form_with(model: [@prototype, @comment], local: true) do |f| %>
             <div class="field">
-              <%= f.label :content, "コメント" %><br />
+              <%= f.label :content, "コメント" %><br/>
               <%= f.text_field :content, id:"comment_content" %>
             </div>
             <div class="actions">
