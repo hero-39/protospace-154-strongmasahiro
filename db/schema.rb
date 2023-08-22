@@ -10,6 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[7.0].define(version: 2023_08_17_102526) do
+
 ActiveRecord::Schema[7.0].define(version: 2023_08_21_113350) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -39,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_113350) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", charset: "utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "prototype_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prototypes", charset: "utf8", force: :cascade do |t|
+    t.string "title", null: false
   create_table "prototypes", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "catch_copy", null: false
