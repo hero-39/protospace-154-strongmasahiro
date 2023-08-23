@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :move_to_user, only: :edit
+  before_action :move_to_user, only: [:edit, :destroy]
+
 
   def index
     @prototypes = Prototype.all
@@ -37,6 +38,12 @@ class PrototypesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  
+  def destroy
+    prototype = Prototype.find(params[:id])
+    prototype.destroy
+    redirect_to root_path
+  end
 
   private
 
@@ -53,6 +60,13 @@ class PrototypesController < ApplicationController
   def move_to_user
     @prototype = Prototype.find(params[:id])
     if current_user.id != @prototype.user.id   
+      redirect_to root_path
+    end
+  end
+
+  def move_to_user
+    @prototype = Prototype.find(params[:id])
+    if current_user.id != @prototype.user.id
       redirect_to root_path
     end
   end
