@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_user, only: :edit
 
   def index
     @prototypes = Prototype.all
@@ -24,6 +25,19 @@ class PrototypesController < ApplicationController
     @comments = @prototype.comments.includes(:user)
   end
 
+  def edit
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def update
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
+      redirect_to prototype_path(@prototype.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def prototype_params
@@ -33,6 +47,13 @@ class PrototypesController < ApplicationController
   def move_to_index
     return if user_signed_in?
 
-    redirect_to action: :index
+    redirect_to root_path
+  end
+
+  def move_to_user
+    @prototype = Prototype.find(params[:id])
+    if current_user.id != @prototype.user.id   
+      redirect_to root_path
+    end
   end
 end
