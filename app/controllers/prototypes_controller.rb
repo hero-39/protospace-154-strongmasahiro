@@ -3,7 +3,6 @@ class PrototypesController < ApplicationController
   before_action :move_to_session, except: [:index, :show]
   before_action :move_to_user, only: [:edit, :destroy]
 
-
   def index
     @prototypes = Prototype.all
   end
@@ -36,7 +35,7 @@ class PrototypesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
   def destroy
     @prototype.destroy
     redirect_to root_path
@@ -59,8 +58,8 @@ class PrototypesController < ApplicationController
   end
 
   def move_to_user
-    if current_user.id != @prototype.user.id   
-      redirect_to root_path
-    end
+    return unless current_user.id != @prototype.user.id
+
+    redirect_to root_path
   end
 end
